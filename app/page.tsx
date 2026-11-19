@@ -71,53 +71,66 @@ export default function Home() {
       </header>
 
       <main className="space-y-24 pt-16">
-        {/* Hero Section */}
-        <section className="space-y-6">
-          <div className="space-y-2">
-            <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase">
-              {PROFILE.role}
+        {/* Hero Section con Foto de Perfil */}
+        <section className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-8">
+          <div className="space-y-6 flex-1">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase">
+                {PROFILE.role}
+              </p>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+                {PROFILE.name}
+              </h1>
+            </div>
+            <p className="text-base md:text-lg text-zinc-400 leading-relaxed max-w-2xl">
+              {PROFILE.summary}
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
-              {PROFILE.name}
-            </h1>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a
+                href={PROFILE.cvUrl}
+                download="Francisco_Luis_Carrillo_CV_PO.pdf"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-zinc-950 font-semibold text-sm hover:bg-emerald-400 transition-colors"
+              >
+                <FileDown className="w-4 h-4" />
+                Descargar CV
+              </a>
+              <a
+                href={PROFILE.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-100 text-zinc-950 font-medium text-sm hover:bg-zinc-200 transition-colors"
+              >
+                <GithubIcon className="w-4 h-4" />
+                GitHub
+              </a>
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 font-medium text-sm hover:border-zinc-700 transition-colors"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${PROFILE.email}`}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 font-medium text-sm hover:border-zinc-700 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                Contacto
+              </a>
+            </div>
           </div>
-          <p className="text-lg text-zinc-400 leading-relaxed max-w-2xl">
-            {PROFILE.summary}
-          </p>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <a
-              href={PROFILE.cvUrl}
-              download="CV_Francisco_Luis_Carrillo.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-zinc-950 font-semibold text-sm hover:bg-emerald-400 transition-colors"
-            >
-              <FileDown className="w-4 h-4" />
-              Descargar CV
-            </a>
-            <a
-              href={PROFILE.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-100 text-zinc-950 font-medium text-sm hover:bg-zinc-200 transition-colors"
-            >
-              <GithubIcon className="w-4 h-4" />
-              GitHub
-            </a>
-            <a
-              href={PROFILE.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 font-medium text-sm hover:border-zinc-700 transition-colors"
-            >
-              <LinkedinIcon className="w-4 h-4" />
-              LinkedIn
-            </a>
-            <a
-              href={`mailto:${PROFILE.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 font-medium text-sm hover:border-zinc-700 transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              Contacto
-            </a>
+
+          {/* Retrato editorial */}
+          <div className="shrink-0">
+            <div className="relative w-44 h-52 md:w-52 md:h-60 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
+              <img
+                src={PROFILE.avatarUrl}
+                alt={PROFILE.name}
+                className="w-full h-full object-cover object-[68%_10%]"
+              />
+            </div>
           </div>
         </section>
 
@@ -125,19 +138,23 @@ export default function Home() {
         <section id="experiencia" className="space-y-8 scroll-mt-16">
           <div className="flex items-center gap-2 text-zinc-100">
             <Briefcase className="w-5 h-5 text-zinc-400" />
-            <h2 className="text-2xl font-semibold tracking-tight">Experiencia</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Experiencia Laboral</h2>
           </div>
-          <div className="space-y-8 border-l border-zinc-800 ml-2 pl-6">
+          <div className="space-y-10 border-l border-zinc-800 ml-2 pl-6">
             {EXPERIENCE.map((item, index) => (
-              <div key={index} className="relative space-y-2">
-                <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-700 ring-4 ring-zinc-950" />
+              <div key={index} className="relative space-y-2.5">
+                <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500/80 ring-4 ring-zinc-950" />
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
                   <h3 className="text-lg font-medium text-zinc-100">{item.role}</h3>
                   <span className="text-xs font-mono text-zinc-500">{item.period}</span>
                 </div>
                 <p className="text-sm font-medium text-zinc-400">{item.company}</p>
-                <p className="text-sm text-zinc-400 leading-relaxed">{item.description}</p>
-                <div className="flex flex-wrap gap-2 pt-1">
+                <ul className="space-y-1.5 text-sm text-zinc-400 leading-relaxed list-disc list-inside marker:text-zinc-600">
+                  {item.highlights.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 pt-1.5">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
@@ -217,7 +234,7 @@ export default function Home() {
         <section id="habilidades" className="space-y-8 scroll-mt-16">
           <div className="flex items-center gap-2 text-zinc-100">
             <Terminal className="w-5 h-5 text-zinc-400" />
-            <h2 className="text-2xl font-semibold tracking-tight">Stack & Herramientas</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Habilidades & Stack</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {Object.entries(SKILLS).map(([category, items]) => (
@@ -240,7 +257,7 @@ export default function Home() {
           <div className="flex items-center gap-2 text-zinc-100">
             <GraduationCap className="w-5 h-5 text-zinc-400" />
             <h2 className="text-2xl font-semibold tracking-tight">
-              Formación & Certificaciones
+              Educación & Certificaciones
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -295,7 +312,7 @@ export default function Home() {
         </section>
       </main>
 
-{/* Footer */}
+      {/* Footer */}
       <footer className="mt-24 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500">
         <p>© 2026 {PROFILE.name}.</p>
         <p>{PROFILE.location}</p>

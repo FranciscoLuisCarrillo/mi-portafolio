@@ -1,47 +1,73 @@
 export const PROFILE = {
-  name: "Francisco Luis Carrillo",
-  role: "Product Owner & Data Analyst",
+  name: "Francisco Carrillo",
+  role: "Technical Product Owner & Scrum Master",
   summary:
-    "Profesional con experiencia en gestión de productos digitales, interoperabilidad financiera y análisis de datos. Enfocado en transformar requerimientos complejos en soluciones técnicas escalables mediante Python, SQL y arquitectura de software.",
+    "Especializado en liderar células cross-product, gestión del ciclo de vida de software (SDLC), interoperabilidad de plataformas transaccionales y adopción de APIs bursátiles. Experiencia comprobada reduciendo tiempos de onboarding en un 80% mediante auditoría funcional, definición de KPIs y articulación entre negocio, desarrollo externo e infraestructura.",
   location: "Buenos Aires, Argentina",
-  email: "franciscoluiscarrillo@gmail.com",
+  email: "carrillo.francisco.luis@gmail.com",
   github: "https://github.com/FranciscoLuisCarrillo",
-  linkedin: "https://linkedin.com/in/franciscoluiscarrillo",
+  linkedin: "https://www.linkedin.com/in/franciscoluiscarrillo",
   cvUrl: "/cv-francisco-carrillo.pdf",
+  avatarUrl: "/avatar.jpeg",
 };
 
 export const EXPERIENCE = [
   {
-    role: "Product Owner — Remarkets, Interoperabilidad & Mobile",
+    role: "Product Owner (Interoperabilidad) & Scrum Master",
     company: "Primary (A3 Mercados / Matba Rofex)",
-    period: "Ene 2024 – Nov 2025",
-    description:
-      "Liderazgo integral del roadmap y backlog para productos de interoperabilidad entre Matriz OMS, Escobolsa y canales móviles, gestión de disponibilidad de APIs y tableros ejecutivos en Qlik.",
-    tags: ["Product Management", "APIs", "Mercados Financieros", "Qlik", "Agile"],
+    period: "Oct 2023 – Nov 2025",
+    highlights: [
+      "Reduje en un 80% el tiempo de implementación de onboardings tras liderar una auditoría técnica entre plataformas (Matriz OMS, Mobile y Ecobolsa) y establecer KPIs de seguimiento operativo.",
+      "Diseñé la estructura, roles y responsabilidades de la célula cross-product (con referentes de los 3 productos), actuando como Scrum Master e implementando alertas automatizadas para detectar desvíos en implementaciones paralelas.",
+    ],
+    tags: ["Scrum Master", "Interoperabilidad", "Matriz OMS", "KPIs & OKRs", "Auditoría Técnica"],
+  },
+  {
+    role: "Product Owner (reMarkets)",
+    company: "Primary (A3 Mercados / Matba Rofex)",
+    period: "Ene 2023 – Nov 2025",
+    highlights: [
+      "Gestioné el ciclo operativo y funcional del ambiente de testing y trading algorítmico (reMarkets), administrando altas de contratos, cuentas, saldos, portal web y despliegue de nuevas versiones.",
+      "Coordiné con Producto e Infraestructura el mantenimiento de VMs Linux (diagnóstico de logs vía PuTTY y cotizador) y diseñé KPIs trimestrales e informes de gestión para la mejora continua del entorno.",
+    ],
+    tags: ["reMarkets", "Trading Algorítmico", "Linux / VMs", "SDLC", "Product Ownership"],
+  },
+  {
+    role: "Product Owner (Mobile)",
+    company: "Primary (A3 Mercados / Matba Rofex)",
+    period: "Ene 2022 – Oct 2023",
+    highlights: [
+      "Actué como nexo técnico-funcional con el desarrollador externo para liderar el lanzamiento de la nueva versión de la app Mobile, coordinando su rediseño integral de UI/UX, branding e informes de avance y riesgos.",
+    ],
+    tags: ["Mobile App", "Gestión de Proveedores", "UI/UX", "Roadmap"],
   },
   {
     role: "Analista de Ecosistema & Developer Relations",
     company: "Primary (A3 Mercados / Matba Rofex)",
-    period: "Abr 2021 – Dic 2023",
-    description:
-      "Mantenimiento de SDKs open-source en Python en GitHub, soporte técnico a integradores, diseño de workshops de trading algorítmico y reportes analíticos mensuales.",
-    tags: ["Python", "SDKs", "Developer Relations", "Trading Algorítmico"],
+    period: "Abr 2021 – Dic 2022",
+    highlights: [
+      "Administré los repositorios open-source en GitHub (SDKs en Python y .NET) junto a los Owners técnicos, brindé soporte de integración de APIs y dicté workshops técnicos que impulsaron la adopción del ecosistema.",
+      "Desarrollé informes mensuales en Qlik sobre uso de reMarkets, volumen de contratos y actividad en sandbox para orientar decisiones estratégicas.",
+    ],
+    tags: ["REST APIs", "SDKs Python / .NET", "GitHub", "Qlik", "Developer Relations"],
   },
   {
-    role: "Analista BI & Automatización de Datos",
+    role: "Analista de Automatización & Datos",
     company: "Ad-Cap Argentina",
     period: "Dic 2020 – Abr 2021",
-    description:
-      "Automatización de conciliaciones financieras y generación de reportes regulatorios e impositivos (AFIP/ARBA) mediante scripts en Python.",
-    tags: ["Python", "ETL", "Automatización", "BI"],
+    highlights: [
+      "Desarrollé scripts en Python (Pandas) y consultas SQL para automatizar cruces masivos de movimientos bancarios y operaciones bursátiles, estandarizando la extracción de datos para dashboards y reportes diarios en PDF.",
+    ],
+    tags: ["Python (Pandas)", "SQL", "Automatización", "ETL"],
   },
   {
-    role: "Analista Contable & Procesos de Datos",
+    role: "Analista Contable",
     company: "Sanatorio General Sarmiento",
     period: "Abr 2016 – Jun 2019",
-    description:
-      "Colaboración en la confección del balance anual, seguimiento diario de la posición financiera y automatización de cálculo de retenciones impositivas.",
-    tags: ["Contabilidad", "Finanzas", "Python", "Control de Gestión"],
+    highlights: [
+      "Ejecuté análisis, depuración y conciliación de cuentas patrimoniales y de resultados para cierres mensuales y balance anual, además de liquidaciones impositivas (AFIP/ARBA), conciliaciones bancarias y posición financiera.",
+    ],
+    tags: ["Contabilidad", "Finanzas", "AFIP / ARBA", "Conciliaciones"],
   },
 ];
 
@@ -73,28 +99,30 @@ export const PROJECTS = [
 ];
 
 export const SKILLS = {
-  "Datos & BI": [
-    "SQL (SQL Server / PostgreSQL)",
-    "Python (Pandas)",
-    "Looker Studio",
-    "Qlik",
-    "ETL / ELT",
-    "Modelado Dimensional",
-  ],
-  "Desarrollo & Backend": [
-    "Java / JSP",
-    "C# / .NET",
-    "TypeScript / Next.js",
-    "APIs REST / SOAP",
-    "Linux / Docker",
-    "Git / GitHub",
-  ],
-  "Producto & Gestión": [
-    "Product Discovery",
-    "Roadmap & Backlog",
-    "Scrum / Kanban",
+  "Gestión Ágil & Producto": [
+    "Scrum (Scrum Master)",
+    "Priorización de Backlog & Roadmap",
+    "Gestión de SDLC",
+    "Interoperabilidad de Sistemas",
+    "Auditoría Técnico-Funcional",
+    "Gestión de Proveedores Externos",
+    "Onboarding de Clientes",
     "KPIs & OKRs",
+  ],
+  "Tecnología, APIs & Infraestructura": [
+    "REST APIs Bursátiles",
+    "SDKs (Python / .NET)",
+    "Git / GitHub",
+    "Servidores Linux / VMs (PuTTY, logs)",
+    "SQL & Python (Pandas)",
+    "Qlik & Power BI",
+  ],
+  "Dominio de Negocio": [
     "Mercado de Capitales",
+    "OMS (Matriz)",
+    "Trading Algorítmico",
+    "Ambientes de Testing (reMarkets)",
+    "Negociación y Liquidación Financiera",
   ],
 };
 
@@ -102,23 +130,23 @@ export const EDUCATION = [
   {
     institution: "Universidad Tecnológica Nacional (UTN - FRGP)",
     degree: "Tecnicatura Universitaria en Programación",
-    period: "Mar 2024 – En curso",
+    period: "Mar 2024 – Ene 2027",
     detail:
       "Arquitectura de software, bases de datos relacionales, programación orientada a objetos y metodologías ágiles.",
   },
   {
     institution: "Universidad Nacional de Luján (UNLu)",
-    degree: "Contador Público (Estudios previos)",
-    period: "2015 – 2019",
+    degree: "Contador Público",
+    period: "Ene 2013 – Dic 2021",
     detail:
-      "Contabilidad patrimonial, costos, finanzas corporativas y normativa tributaria.",
+      "Formación integral en contabilidad patrimonial, costos, finanzas corporativas y normativa tributaria.",
   },
 ];
 
 export const CERTIFICATIONS = [
   {
-    title: "Idóneo en Mercado de Capitales & Asesor Financiero Certificado",
-    issuer: "CNV / IAEF",
+    title: "Asesor Financiero Certificado & Idóneo en Mercado de Capitales",
+    issuer: "IAEF & CNV",
     year: "2020",
   },
   {

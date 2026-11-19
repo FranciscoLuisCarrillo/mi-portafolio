@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Francisco Luis Carrillo | Product Owner & Data Analyst",
+  title: "Francisco Carrillo | Technical Product Owner & Scrum Master",
   description:
-    "Portafolio profesional, proyectos de análisis de datos, desarrollo y gestión de producto.",
+    "Technical Product Owner y Scrum Master especializado en mercado de capitales, interoperabilidad de plataformas, APIs bursátiles y análisis de datos.",
 };
 
 export default function RootLayout({
