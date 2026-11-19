@@ -48,48 +48,58 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen max-w-4xl mx-auto px-6 py-16 md:py-24">
-      {/* Navegación superior */}
-      <header className="flex justify-between items-center pb-16 border-b border-zinc-800/80">
-        <span className="font-semibold tracking-tight text-zinc-100">
-          {PROFILE.name}
-        </span>
-        <nav className="flex gap-6 text-sm text-zinc-400">
-          <a href="#experiencia" className="hover:text-zinc-100 transition-colors">
-            Experiencia
-          </a>
-          <a href="#proyectos" className="hover:text-zinc-100 transition-colors">
-            Proyectos
-          </a>
-          <a href="#habilidades" className="hover:text-zinc-100 transition-colors">
-            Stack
-          </a>
-          <a href="#formacion" className="hover:text-zinc-100 transition-colors">
-            Formación
-          </a>
-        </nav>
-      </header>
+    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12 md:py-16">
+      {/* Bloque unificado: Navegación integrada + Hero ancho completo */}
+      <div className="relative rounded-2xl overflow-hidden border border-zinc-800/80 bg-zinc-950 shadow-2xl">
+        {/* Imagen desplazada hacia la derecha para ubicar tu figura en el tercio derecho */}
+        <img
+          src={PROFILE.avatarUrl}
+          alt={PROFILE.name}
+          className="absolute inset-0 w-full h-full object-cover object-[75%_10%] sm:object-[82%_10%] translate-x-4 sm:translate-x-10 md:translate-x-14 opacity-85"
+        />
 
-      <main className="space-y-24 pt-16">
-        {/* Hero Section con Foto de Perfil */}
-        <section className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-8">
-          <div className="space-y-6 flex-1">
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-emerald-400 tracking-wide uppercase">
+        {/* Degradados suaves para fundir el borde izquierdo de la foto y asegurar contraste en el texto */}
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-zinc-950/15" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-transparent" />
+
+        {/* Contenido por encima del degradado */}
+        <div className="relative z-10 flex flex-col justify-between p-6 sm:p-10 md:p-12 min-h-[430px] sm:min-h-[470px]">
+          {/* Navegación superior limpia e integrada sin caja cerrada */}
+          <header className="flex justify-center md:justify-start items-center pb-14 sm:pb-20">
+            <nav className="flex flex-wrap justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-zinc-300/90 border-b border-white/10 pb-2.5">
+              <a href="#experiencia" className="hover:text-emerald-400 transition-colors">
+                Experiencia
+              </a>
+              <a href="#proyectos" className="hover:text-emerald-400 transition-colors">
+                Proyectos
+              </a>
+              <a href="#habilidades" className="hover:text-emerald-400 transition-colors">
+                Stack
+              </a>
+              <a href="#formacion" className="hover:text-emerald-400 transition-colors">
+                Formación
+              </a>
+            </nav>
+          </header>
+
+          {/* Presentación extendida de punta a punta */}
+          <section className="space-y-4 sm:space-y-5 w-full pt-12 md:pt-8">
+            <div className="space-y-1.5">
+              <p className="text-xs sm:text-sm font-medium text-emerald-400 tracking-wide uppercase">
                 {PROFILE.role}
               </p>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
                 {PROFILE.name}
               </h1>
             </div>
-            <p className="text-base md:text-lg text-zinc-400 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base text-zinc-200 leading-relaxed w-full drop-shadow-sm">
               {PROFILE.summary}
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
               <a
                 href={PROFILE.cvUrl}
                 download="Francisco_Luis_Carrillo_CV_PO.pdf"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-zinc-950 font-semibold text-sm hover:bg-emerald-400 transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-500 text-zinc-950 font-semibold text-xs sm:text-sm hover:bg-emerald-400 transition-colors"
               >
                 <FileDown className="w-4 h-4" />
                 Descargar CV
@@ -98,7 +108,7 @@ export default function Home() {
                 href={PROFILE.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-100 text-zinc-950 font-medium text-sm hover:bg-zinc-200 transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-100 text-zinc-950 font-medium text-xs sm:text-sm hover:bg-zinc-200 transition-colors"
               >
                 <GithubIcon className="w-4 h-4" />
                 GitHub
@@ -107,45 +117,40 @@ export default function Home() {
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 font-medium text-sm hover:border-zinc-700 transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-950/75 backdrop-blur-sm border border-zinc-700/80 text-zinc-200 font-medium text-xs sm:text-sm hover:border-zinc-500 transition-colors"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 LinkedIn
               </a>
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 font-medium text-sm hover:border-zinc-700 transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-950/75 backdrop-blur-sm border border-zinc-700/80 text-zinc-200 font-medium text-xs sm:text-sm hover:border-zinc-500 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 Contacto
               </a>
             </div>
-          </div>
+          </section>
+        </div>
+      </div>
 
-          {/* Retrato editorial */}
-          <div className="shrink-0">
-            <div className="relative w-44 h-52 md:w-52 md:h-60 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-2xl">
-              <img
-                src={PROFILE.avatarUrl}
-                alt={PROFILE.name}
-                className="w-full h-full object-cover object-[68%_10%]"
-              />
-            </div>
-          </div>
-        </section>
-
+      <main className="space-y-20 sm:space-y-24 pt-16 sm:pt-20">
         {/* Experiencia */}
-        <section id="experiencia" className="space-y-8 scroll-mt-16">
+        <section id="experiencia" className="space-y-8 scroll-mt-12">
           <div className="flex items-center gap-2 text-zinc-100">
             <Briefcase className="w-5 h-5 text-zinc-400" />
-            <h2 className="text-2xl font-semibold tracking-tight">Experiencia Laboral</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
+              Experiencia Laboral
+            </h2>
           </div>
-          <div className="space-y-10 border-l border-zinc-800 ml-2 pl-6">
+          <div className="space-y-10 border-l border-zinc-800 ml-2 pl-5 sm:pl-6">
             {EXPERIENCE.map((item, index) => (
               <div key={index} className="relative space-y-2.5">
-                <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500/80 ring-4 ring-zinc-950" />
+                <span className="absolute -left-[25px] sm:-left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500/80 ring-4 ring-zinc-950" />
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-lg font-medium text-zinc-100">{item.role}</h3>
+                  <h3 className="text-base sm:text-lg font-medium text-zinc-100">
+                    {item.role}
+                  </h3>
                   <span className="text-xs font-mono text-zinc-500">{item.period}</span>
                 </div>
                 <p className="text-sm font-medium text-zinc-400">{item.company}</p>
@@ -170,16 +175,18 @@ export default function Home() {
         </section>
 
         {/* Proyectos */}
-        <section id="proyectos" className="space-y-8 scroll-mt-16">
+        <section id="proyectos" className="space-y-8 scroll-mt-12">
           <div className="flex items-center gap-2 text-zinc-100">
             <FolderGit2 className="w-5 h-5 text-zinc-400" />
-            <h2 className="text-2xl font-semibold tracking-tight">Proyectos Destacados</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
+              Proyectos Destacados
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {PROJECTS.map((project, index) => (
               <article
                 key={index}
-                className="flex flex-col justify-between p-6 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-colors"
+                className="flex flex-col justify-between p-5 sm:p-6 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-colors"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-start gap-4">
@@ -231,10 +238,12 @@ export default function Home() {
         </section>
 
         {/* Habilidades */}
-        <section id="habilidades" className="space-y-8 scroll-mt-16">
+        <section id="habilidades" className="space-y-8 scroll-mt-12">
           <div className="flex items-center gap-2 text-zinc-100">
             <Terminal className="w-5 h-5 text-zinc-400" />
-            <h2 className="text-2xl font-semibold tracking-tight">Habilidades & Stack</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
+              Habilidades & Stack
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {Object.entries(SKILLS).map(([category, items]) => (
@@ -253,10 +262,10 @@ export default function Home() {
         </section>
 
         {/* Formación y Certificaciones */}
-        <section id="formacion" className="space-y-8 scroll-mt-16">
+        <section id="formacion" className="space-y-8 scroll-mt-12">
           <div className="flex items-center gap-2 text-zinc-100">
             <GraduationCap className="w-5 h-5 text-zinc-400" />
-            <h2 className="text-2xl font-semibold tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
               Educación & Certificaciones
             </h2>
           </div>
@@ -313,7 +322,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-24 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500">
+      <footer className="mt-20 sm:mt-24 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500">
         <p>© 2026 {PROFILE.name}.</p>
         <p>{PROFILE.location}</p>
       </footer>
