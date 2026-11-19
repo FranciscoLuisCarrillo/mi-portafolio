@@ -1,6 +1,8 @@
 export const PROFILE = {
   name: "Francisco Carrillo",
+  fullName: "Francisco Luis Carrillo",
   role: "Technical Product Owner & Scrum Master",
+  availability: "Product Owner / Scrum Master / Data Analytics + BI",
   summary:
     "Especializado en liderar células cross-product, gestión del ciclo de vida de software (SDLC), interoperabilidad de plataformas transaccionales y adopción de APIs bursátiles. Experiencia comprobada reduciendo tiempos de onboarding en un 80% mediante auditoría funcional, definición de KPIs y articulación entre negocio, desarrollo externo e infraestructura.",
   location: "Buenos Aires, Argentina",
@@ -11,46 +13,72 @@ export const PROFILE = {
   avatarUrl: "/avatar.jpeg",
 };
 
-export const EXPERIENCE = [
+export const METRICS = [
   {
-    role: "Product Owner (Interoperabilidad) & Scrum Master",
-    company: "Primary (A3 Mercados / Matba Rofex)",
-    period: "Oct 2023 – Nov 2025",
-    highlights: [
-      "Reduje en un 80% el tiempo de implementación de onboardings tras liderar una auditoría técnica entre plataformas (Matriz OMS, Mobile y Ecobolsa) y establecer KPIs de seguimiento operativo.",
-      "Diseñé la estructura, roles y responsabilidades de la célula cross-product (con referentes de los 3 productos), actuando como Scrum Master e implementando alertas automatizadas para detectar desvíos en implementaciones paralelas.",
-    ],
-    tags: ["Scrum Master", "Interoperabilidad", "Matriz OMS", "KPIs & OKRs", "Auditoría Técnica"],
+    value: "-80%",
+    label: "Tiempo de onboarding",
+    detail: "Auditoría técnico-funcional y KPIs operativos",
   },
   {
-    role: "Product Owner (reMarkets)",
-    company: "Primary (A3 Mercados / Matba Rofex)",
-    period: "Ene 2023 – Nov 2025",
-    highlights: [
-      "Gestioné el ciclo operativo y funcional del ambiente de testing y trading algorítmico (reMarkets), administrando altas de contratos, cuentas, saldos, portal web y despliegue de nuevas versiones.",
-      "Coordiné con Producto e Infraestructura el mantenimiento de VMs Linux (diagnóstico de logs vía PuTTY y cotizador) y diseñé KPIs trimestrales e informes de gestión para la mejora continua del entorno.",
-    ],
-    tags: ["reMarkets", "Trading Algorítmico", "Linux / VMs", "SDLC", "Product Ownership"],
+    value: "+4 años",
+    label: "Mercado de Capitales",
+    detail: "Ecosistema Primary / A3 Mercados",
   },
   {
-    role: "Product Owner (Mobile)",
-    company: "Primary (A3 Mercados / Matba Rofex)",
-    period: "Ene 2022 – Oct 2023",
-    highlights: [
-      "Actué como nexo técnico-funcional con el desarrollador externo para liderar el lanzamiento de la nueva versión de la app Mobile, coordinando su rediseño integral de UI/UX, branding e informes de avance y riesgos.",
-    ],
-    tags: ["Mobile App", "Gestión de Proveedores", "UI/UX", "Roadmap"],
+    value: "3 Productos",
+    label: "Célula Cross-Product",
+    detail: "Matriz OMS, Mobile y Ecobolsa",
   },
   {
-    role: "Analista de Ecosistema & Developer Relations",
-    company: "Primary (A3 Mercados / Matba Rofex)",
-    period: "Abr 2021 – Dic 2022",
-    highlights: [
-      "Administré los repositorios open-source en GitHub (SDKs en Python y .NET) junto a los Owners técnicos, brindé soporte de integración de APIs y dicté workshops técnicos que impulsaron la adopción del ecosistema.",
-      "Desarrollé informes mensuales en Qlik sobre uso de reMarkets, volumen de contratos y actividad en sandbox para orientar decisiones estratégicas.",
-    ],
-    tags: ["REST APIs", "SDKs Python / .NET", "GitHub", "Qlik", "Developer Relations"],
+    value: "End-to-End",
+    label: "Gestión SDLC & APIs",
+    detail: "REST/SOAP, SDKs, VMs Linux y BI",
   },
+];
+
+export const PRIMARY_EXPERIENCE = {
+  company: "Primary (A3 Mercados / Matba Rofex)",
+  totalPeriod: "Abr 2021 – Nov 2025",
+  roles: [
+    {
+      role: "Product Owner (Interoperabilidad) & Scrum Master",
+      period: "Oct 2023 – Nov 2025",
+      highlights: [
+        "Reduje en un 80% el tiempo de implementación de onboardings tras liderar una auditoría técnica entre plataformas (Matriz OMS, Mobile y Ecobolsa) y establecer KPIs de seguimiento operativo.",
+        "Diseñé la estructura, roles y responsabilidades de la célula cross-product (con referentes de los 3 productos), actuando como Scrum Master e implementando alertas automatizadas para detectar desvíos en implementaciones paralelas.",
+      ],
+      tags: ["Scrum Master", "Interoperabilidad", "Matriz OMS", "KPIs & OKRs", "Auditoría Técnica"],
+    },
+    {
+      role: "Product Owner (reMarkets)",
+      period: "Ene 2023 – Nov 2025",
+      highlights: [
+        "Gestioné el ciclo operativo y funcional del ambiente de testing y trading algorítmico (reMarkets), administrando altas de contratos, cuentas, saldos, portal web y despliegue de nuevas versiones.",
+        "Coordiné con Producto e Infraestructura el mantenimiento de VMs Linux (diagnóstico de logs vía PuTTY y cotizador) y diseñé KPIs trimestrales e informes de gestión para la mejora continua del entorno.",
+      ],
+      tags: ["reMarkets", "Trading Algorítmico", "Linux / VMs", "SDLC"],
+    },
+    {
+      role: "Product Owner (Mobile)",
+      period: "Ene 2022 – Oct 2023",
+      highlights: [
+        "Actué como nexo técnico-funcional con el desarrollador externo para liderar el lanzamiento de la nueva versión de la app Mobile, coordinando su rediseño integral de UI/UX, branding e informes de avance y riesgos.",
+      ],
+      tags: ["Mobile App", "Gestión de Proveedores", "UI/UX", "Roadmap"],
+    },
+    {
+      role: "Analista de Ecosistema & Developer Relations",
+      period: "Abr 2021 – Dic 2022",
+      highlights: [
+        "Administré los repositorios open-source en GitHub (SDKs en Python y .NET) junto a los Owners técnicos, brindé soporte de integración de APIs y dicté workshops técnicos que impulsaron la adopción del ecosistema.",
+        "Desarrollé informes mensuales en Qlik sobre uso de reMarkets, volumen de contratos y actividad en sandbox para orientar decisiones estratégicas.",
+      ],
+      tags: ["REST APIs", "SDKs Python / .NET", "GitHub", "Qlik", "Developer Relations"],
+    },
+  ],
+};
+
+export const OTHER_EXPERIENCE = [
   {
     role: "Analista de Automatización & Datos",
     company: "Ad-Cap Argentina",

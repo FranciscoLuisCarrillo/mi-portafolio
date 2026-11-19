@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Mail,
   ExternalLink,
@@ -6,10 +9,15 @@ import {
   Terminal,
   FileDown,
   GraduationCap,
+  Check,
+  Copy,
+  Building2,
 } from "lucide-react";
 import {
   PROFILE,
-  EXPERIENCE,
+  METRICS,
+  PRIMARY_EXPERIENCE,
+  OTHER_EXPERIENCE,
   PROJECTS,
   SKILLS,
   EDUCATION,
@@ -47,59 +55,82 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 export default function Home() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(PROFILE.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
+
   return (
-    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12 md:py-16">
-      {/* Bloque unificado: Navegación integrada + Hero ancho completo */}
-      <div className="relative rounded-2xl overflow-hidden border border-zinc-800/80 bg-zinc-950 shadow-2xl">
-        {/* Imagen desplazada hacia la derecha para ubicar tu figura en el tercio derecho */}
+    <div className="min-h-screen max-w-4xl mx-auto px-4 sm:px-6 pb-16">
+      {/* Sticky Glass Header */}
+      <header className="sticky top-3 z-50 mb-4 sm:mb-6">
+        <div className="flex justify-center md:justify-between items-center px-5 py-3 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-800/80 shadow-lg">
+          <div className="hidden md:flex items-center gap-2 text-xs text-slate-400">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span>{PROFILE.availability}</span>
+          </div>
+          <nav className="flex flex-wrap justify-center gap-5 sm:gap-7 text-xs sm:text-sm font-medium text-slate-300">
+            <a href="#experiencia" className="hover:text-sky-400 transition-colors">
+              Experiencia
+            </a>
+            <a href="#proyectos" className="hover:text-sky-400 transition-colors">
+              Proyectos
+            </a>
+            <a href="#habilidades" className="hover:text-sky-400 transition-colors">
+              Stack
+            </a>
+            <a href="#formacion" className="hover:text-sky-400 transition-colors">
+              Formación
+            </a>
+            <a href="#contacto" className="hover:text-sky-400 transition-colors">
+              Contacto
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Banner con imagen de fondo integrada */}
+      <div className="relative rounded-2xl overflow-hidden border border-slate-800/90 bg-slate-900 shadow-2xl">
         <img
           src={PROFILE.avatarUrl}
-          alt={PROFILE.name}
-          className="absolute inset-0 w-full h-full object-cover object-[75%_10%] sm:object-[82%_10%] translate-x-4 sm:translate-x-10 md:translate-x-14 opacity-85"
+          alt={PROFILE.fullName}
+          className="absolute inset-0 w-full h-full object-cover object-[75%_10%] sm:object-[82%_10%] translate-x-4 sm:translate-x-10 md:translate-x-16 opacity-85"
         />
 
-        {/* Degradados suaves para fundir el borde izquierdo de la foto y asegurar contraste en el texto */}
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-zinc-950/15" />
-        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-transparent" />
+        {/* Degradados Obsidian para contraste impecable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/15" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/75 to-transparent" />
 
-        {/* Contenido por encima del degradado */}
-        <div className="relative z-10 flex flex-col justify-between p-6 sm:p-10 md:p-12 min-h-[430px] sm:min-h-[470px]">
-          {/* Navegación superior limpia e integrada sin caja cerrada */}
-          <header className="flex justify-center md:justify-start items-center pb-14 sm:pb-20">
-            <nav className="flex flex-wrap justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-zinc-300/90 border-b border-white/10 pb-2.5">
-              <a href="#experiencia" className="hover:text-emerald-400 transition-colors">
-                Experiencia
-              </a>
-              <a href="#proyectos" className="hover:text-emerald-400 transition-colors">
-                Proyectos
-              </a>
-              <a href="#habilidades" className="hover:text-emerald-400 transition-colors">
-                Stack
-              </a>
-              <a href="#formacion" className="hover:text-emerald-400 transition-colors">
-                Formación
-              </a>
-            </nav>
-          </header>
+        <div className="relative z-10 flex flex-col justify-end p-6 sm:p-10 md:p-12 min-h-[390px] sm:min-h-[430px]">
+          <section className="space-y-4 sm:space-y-5 w-full pt-24 md:pt-16">
+            {/* Píldora de disponibilidad visible en móvil */}
+            <div className="inline-flex md:hidden items-center gap-2 px-3 py-1 rounded-full bg-slate-950/80 border border-slate-800 text-[11px] text-slate-300">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              <span>Disponible para oportunidades</span>
+            </div>
 
-          {/* Presentación extendida de punta a punta */}
-          <section className="space-y-4 sm:space-y-5 w-full pt-12 md:pt-8">
             <div className="space-y-1.5">
-              <p className="text-xs sm:text-sm font-medium text-emerald-400 tracking-wide uppercase">
+              <p className="text-xs sm:text-sm font-semibold text-sky-400 tracking-wider uppercase">
                 {PROFILE.role}
               </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-50">
                 {PROFILE.name}
               </h1>
             </div>
-            <p className="text-sm sm:text-base text-zinc-200 leading-relaxed w-full drop-shadow-sm">
+            <p className="text-sm sm:text-base text-slate-200 leading-relaxed w-full drop-shadow-sm">
               {PROFILE.summary}
             </p>
             <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-2">
               <a
                 href={PROFILE.cvUrl}
                 download="Francisco_Luis_Carrillo_CV_PO.pdf"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-500 text-zinc-950 font-semibold text-xs sm:text-sm hover:bg-emerald-400 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500 text-slate-950 font-semibold text-xs sm:text-sm hover:bg-sky-400 transition-all shadow-md shadow-sky-500/10"
               >
                 <FileDown className="w-4 h-4" />
                 Descargar CV
@@ -108,7 +139,7 @@ export default function Home() {
                 href={PROFILE.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-100 text-zinc-950 font-medium text-xs sm:text-sm hover:bg-zinc-200 transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-100 text-slate-950 font-medium text-xs sm:text-sm hover:bg-white transition-colors"
               >
                 <GithubIcon className="w-4 h-4" />
                 GitHub
@@ -117,44 +148,129 @@ export default function Home() {
                 href={PROFILE.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-950/75 backdrop-blur-sm border border-zinc-700/80 text-zinc-200 font-medium text-xs sm:text-sm hover:border-zinc-500 transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-950/80 backdrop-blur-sm border border-slate-700/80 text-slate-200 font-medium text-xs sm:text-sm hover:border-sky-500/50 hover:text-white transition-colors"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 LinkedIn
               </a>
-              <a
-                href={`mailto:${PROFILE.email}`}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-950/75 backdrop-blur-sm border border-zinc-700/80 text-zinc-200 font-medium text-xs sm:text-sm hover:border-zinc-500 transition-colors"
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-950/80 backdrop-blur-sm border border-slate-700/80 text-slate-200 font-medium text-xs sm:text-sm hover:border-sky-500/50 hover:text-white transition-colors cursor-pointer"
               >
-                <Mail className="w-4 h-4" />
-                Contacto
-              </a>
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span className="text-emerald-400">¡Email copiado!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    <span>Copiar Email</span>
+                  </>
+                )}
+              </button>
             </div>
           </section>
         </div>
       </div>
 
+      {/* Franja Bento de KPIs de Impacto */}
+      <section aria-label="Métricas clave" className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
+        {METRICS.map((metric, idx) => (
+          <div
+            key={idx}
+            className="p-4 sm:p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 border-t-slate-700/60 hover:border-sky-500/30 transition-colors"
+          >
+            <p className="text-xl sm:text-2xl font-bold tracking-tight text-sky-400">
+              {metric.value}
+            </p>
+            <p className="text-xs sm:text-sm font-medium text-slate-100 mt-1">
+              {metric.label}
+            </p>
+            <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5 leading-snug">
+              {metric.detail}
+            </p>
+          </div>
+        ))}
+      </section>
+
       <main className="space-y-20 sm:space-y-24 pt-16 sm:pt-20">
-        {/* Experiencia */}
-        <section id="experiencia" className="space-y-8 scroll-mt-12">
-          <div className="flex items-center gap-2 text-zinc-100">
-            <Briefcase className="w-5 h-5 text-zinc-400" />
+        {/* Experiencia Laboral con Primary Agrupado */}
+        <section id="experiencia" className="space-y-8 scroll-mt-24">
+          <div className="flex items-center gap-2.5 text-slate-100">
+            <Briefcase className="w-5 h-5 text-sky-400" />
             <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
               Experiencia Laboral
             </h2>
           </div>
-          <div className="space-y-10 border-l border-zinc-800 ml-2 pl-5 sm:pl-6">
-            {EXPERIENCE.map((item, index) => (
+
+          {/* Bloque agrupado: Primary (A3 Mercados / Matba Rofex) */}
+          <div className="rounded-2xl bg-slate-900/40 border border-slate-800/80 border-t-slate-700/50 p-5 sm:p-7 space-y-6">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pb-4 border-b border-slate-800/80">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-400">
+                  <Building2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-slate-50">
+                    {PRIMARY_EXPERIENCE.company}
+                  </h3>
+                  <p className="text-xs text-slate-400">Progresión de roles en ecosistema financiero</p>
+                </div>
+              </div>
+              <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-slate-400 self-start sm:self-auto">
+                {PRIMARY_EXPERIENCE.totalPeriod}
+              </span>
+            </div>
+
+            <div className="space-y-8 border-l border-slate-800 ml-2 pl-5 sm:pl-6">
+              {PRIMARY_EXPERIENCE.roles.map((item, index) => (
+                <div key={index} className="relative space-y-2.5">
+                  <span
+                    className={`absolute -left-[25px] sm:-left-[29px] top-1.5 w-2.5 h-2.5 rounded-full ring-4 ring-slate-950 ${
+                      index === 0 ? "bg-sky-400" : "bg-slate-600"
+                    }`}
+                  />
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+                    <h4 className="text-base font-medium text-slate-100">
+                      {item.role}
+                    </h4>
+                    <span className="text-xs font-mono text-slate-500">{item.period}</span>
+                  </div>
+                  <ul className="space-y-1.5 text-sm text-slate-300/90 leading-relaxed list-disc list-inside marker:text-sky-500/60">
+                    {item.highlights.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 text-xs rounded-md bg-slate-950/80 border border-slate-800 text-slate-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Trayectoria previa */}
+          <div className="space-y-8 border-l border-slate-800 ml-2 pl-5 sm:pl-6 pt-2">
+            {OTHER_EXPERIENCE.map((item, index) => (
               <div key={index} className="relative space-y-2.5">
-                <span className="absolute -left-[25px] sm:-left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500/80 ring-4 ring-zinc-950" />
+                <span className="absolute -left-[25px] sm:-left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 ring-4 ring-slate-950" />
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-base sm:text-lg font-medium text-zinc-100">
+                  <h3 className="text-base sm:text-lg font-medium text-slate-100">
                     {item.role}
                   </h3>
-                  <span className="text-xs font-mono text-zinc-500">{item.period}</span>
+                  <span className="text-xs font-mono text-slate-500">{item.period}</span>
                 </div>
-                <p className="text-sm font-medium text-zinc-400">{item.company}</p>
-                <ul className="space-y-1.5 text-sm text-zinc-400 leading-relaxed list-disc list-inside marker:text-zinc-600">
+                <p className="text-sm font-medium text-slate-400">{item.company}</p>
+                <ul className="space-y-1.5 text-sm text-slate-300/90 leading-relaxed list-disc list-inside marker:text-slate-600">
                   {item.highlights.map((point, i) => (
                     <li key={i}>{point}</li>
                   ))}
@@ -163,7 +279,7 @@ export default function Home() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-0.5 text-xs rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300"
+                      className="px-2.5 py-0.5 text-xs rounded-md bg-slate-900 border border-slate-800 text-slate-300"
                     >
                       {tag}
                     </span>
@@ -174,10 +290,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Proyectos */}
-        <section id="proyectos" className="space-y-8 scroll-mt-12">
-          <div className="flex items-center gap-2 text-zinc-100">
-            <FolderGit2 className="w-5 h-5 text-zinc-400" />
+        {/* Proyectos Destacados con elevación hover */}
+        <section id="proyectos" className="space-y-8 scroll-mt-24">
+          <div className="flex items-center gap-2.5 text-slate-100">
+            <FolderGit2 className="w-5 h-5 text-sky-400" />
             <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
               Proyectos Destacados
             </h2>
@@ -186,21 +302,21 @@ export default function Home() {
             {PROJECTS.map((project, index) => (
               <article
                 key={index}
-                className="flex flex-col justify-between p-5 sm:p-6 rounded-xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700 transition-colors"
+                className="group flex flex-col justify-between p-5 sm:p-6 rounded-xl bg-slate-900/50 border border-slate-800/80 border-t-slate-700/50 hover:-translate-y-1 hover:border-sky-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-lg"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-start gap-4">
-                    <h3 className="text-base font-semibold text-zinc-100">
+                    <h3 className="text-base font-semibold text-slate-100 group-hover:text-sky-300 transition-colors">
                       {project.title}
                     </h3>
-                    <div className="flex gap-3 text-zinc-400 shrink-0">
+                    <div className="flex gap-3 text-slate-400 shrink-0">
                       {project.repoUrl && (
                         <a
                           href={project.repoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="Código fuente"
-                          className="hover:text-zinc-100 transition-colors"
+                          className="hover:text-sky-400 transition-colors"
                         >
                           <GithubIcon className="w-4 h-4" />
                         </a>
@@ -211,14 +327,14 @@ export default function Home() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="Demo en vivo"
-                          className="hover:text-zinc-100 transition-colors"
+                          className="hover:text-sky-400 transition-colors"
                         >
                           <ExternalLink className="w-4 h-4" />
                         </a>
                       )}
                     </div>
                   </div>
-                  <p className="text-sm text-zinc-400 leading-relaxed">
+                  <p className="text-sm text-slate-300/90 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
@@ -226,7 +342,7 @@ export default function Home() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 text-xs font-mono rounded bg-zinc-950 text-zinc-400 border border-zinc-800/80"
+                      className="px-2 py-0.5 text-xs font-mono rounded bg-slate-950 text-slate-400 border border-slate-800/80"
                     >
                       {tag}
                     </span>
@@ -237,23 +353,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Habilidades */}
-        <section id="habilidades" className="space-y-8 scroll-mt-12">
-          <div className="flex items-center gap-2 text-zinc-100">
-            <Terminal className="w-5 h-5 text-zinc-400" />
+        {/* Habilidades & Stack */}
+        <section id="habilidades" className="space-y-8 scroll-mt-24">
+          <div className="flex items-center gap-2.5 text-slate-100">
+            <Terminal className="w-5 h-5 text-sky-400" />
             <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
               Habilidades & Stack
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {Object.entries(SKILLS).map(([category, items]) => (
-              <div key={category} className="space-y-3">
-                <h3 className="text-sm font-medium text-zinc-300 border-b border-zinc-800 pb-2">
+              <div
+                key={category}
+                className="p-5 rounded-xl bg-slate-900/40 border border-slate-800/80 space-y-3"
+              >
+                <h3 className="text-sm font-semibold text-sky-400 border-b border-slate-800 pb-2">
                   {category}
                 </h3>
-                <ul className="space-y-1.5 text-sm text-zinc-400">
+                <ul className="space-y-1.5 text-sm text-slate-300">
                   {items.map((skill) => (
-                    <li key={skill}>{skill}</li>
+                    <li key={skill} className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-slate-600" />
+                      <span>{skill}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -262,33 +384,33 @@ export default function Home() {
         </section>
 
         {/* Formación y Certificaciones */}
-        <section id="formacion" className="space-y-8 scroll-mt-12">
-          <div className="flex items-center gap-2 text-zinc-100">
-            <GraduationCap className="w-5 h-5 text-zinc-400" />
+        <section id="formacion" className="space-y-8 scroll-mt-24">
+          <div className="flex items-center gap-2.5 text-slate-100">
+            <GraduationCap className="w-5 h-5 text-sky-400" />
             <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">
               Educación & Certificaciones
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <h3 className="text-sm font-medium text-zinc-300 border-b border-zinc-800 pb-2">
+              <h3 className="text-sm font-medium text-slate-300 border-b border-slate-800 pb-2">
                 Educación Académica
               </h3>
               <div className="space-y-4">
                 {EDUCATION.map((edu, index) => (
                   <div key={index} className="space-y-1">
                     <div className="flex justify-between items-baseline gap-2">
-                      <h4 className="text-sm font-semibold text-zinc-100">
+                      <h4 className="text-sm font-semibold text-slate-100">
                         {edu.degree}
                       </h4>
-                      <span className="text-xs font-mono text-zinc-500 shrink-0">
+                      <span className="text-xs font-mono text-slate-500 shrink-0">
                         {edu.period}
                       </span>
                     </div>
-                    <p className="text-xs font-medium text-emerald-400">
+                    <p className="text-xs font-medium text-sky-400">
                       {edu.institution}
                     </p>
-                    <p className="text-xs text-zinc-400 leading-relaxed">
+                    <p className="text-xs text-slate-400 leading-relaxed">
                       {edu.detail}
                     </p>
                   </div>
@@ -297,7 +419,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-sm font-medium text-zinc-300 border-b border-zinc-800 pb-2">
+              <h3 className="text-sm font-medium text-slate-300 border-b border-slate-800 pb-2">
                 Certificaciones
               </h3>
               <ul className="space-y-3">
@@ -307,10 +429,10 @@ export default function Home() {
                     className="flex justify-between items-start gap-4 text-sm"
                   >
                     <div>
-                      <p className="font-medium text-zinc-200">{cert.title}</p>
-                      <p className="text-xs text-zinc-400">{cert.issuer}</p>
+                      <p className="font-medium text-slate-200">{cert.title}</p>
+                      <p className="text-xs text-slate-400">{cert.issuer}</p>
                     </div>
-                    <span className="text-xs font-mono text-zinc-500 shrink-0">
+                    <span className="text-xs font-mono text-slate-500 shrink-0">
                       {cert.year}
                     </span>
                   </li>
@@ -319,11 +441,54 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Tarjeta de Llamado a la Acción (CTA) Final */}
+        <section
+          id="contacto"
+          className="scroll-mt-24 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/30 border border-slate-800 border-t-sky-500/30 p-6 sm:p-10 text-center space-y-5"
+        >
+          <div className="space-y-2 max-w-xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-50">
+              ¿Conversamos sobre producto o datos?
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300">
+              Estoy abierto a oportunidades como Technical Product Owner, Scrum Master o roles híbridos entre negocio, tecnología y analítica.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-500 text-slate-950 font-semibold text-sm hover:bg-sky-400 transition-colors cursor-pointer"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  <span>¡Correo copiado al portapapeles!</span>
+                </>
+              ) : (
+                <>
+                  <Mail className="w-4 h-4" />
+                  <span>{PROFILE.email}</span>
+                </>
+              )}
+            </button>
+            <a
+              href={PROFILE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-950 border border-slate-700 text-slate-200 font-medium text-sm hover:border-sky-500/50 transition-colors"
+            >
+              <LinkedinIcon className="w-4 h-4" />
+              Conectar en LinkedIn
+            </a>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 sm:mt-24 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500">
-        <p>© 2026 {PROFILE.name}.</p>
+      <footer className="mt-16 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <p>© 2026 {PROFILE.fullName}.</p>
         <p>{PROFILE.location}</p>
       </footer>
     </div>
