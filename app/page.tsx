@@ -259,32 +259,49 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Trayectoria previa */}
-          <div className="space-y-8 border-l border-slate-800 ml-2 pl-5 sm:pl-6 pt-2">
+          {/* Trayectoria previa con tarjetas unificadas */}
+          <div className="space-y-6">
             {OTHER_EXPERIENCE.map((item, index) => (
-              <div key={index} className="relative space-y-2.5">
-                <span className="absolute -left-[25px] sm:-left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 ring-4 ring-slate-950" />
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <h3 className="text-base sm:text-lg font-medium text-slate-100">
-                    {item.role}
-                  </h3>
-                  <span className="text-xs font-mono text-slate-500">{item.period}</span>
+              <div
+                key={index}
+                className="rounded-2xl bg-slate-900/40 border border-slate-800/80 border-t-slate-700/50 p-5 sm:p-7 space-y-5"
+              >
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pb-4 border-b border-slate-800/80">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-lg bg-slate-800/80 border border-slate-700/60 text-slate-300">
+                      <Building2 className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-semibold text-slate-50">
+                        {item.company}
+                      </h3>
+                      <p className="text-xs text-slate-400">{item.role}</p>
+                    </div>
+                  </div>
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-950 border border-slate-800 text-slate-400 self-start sm:self-auto">
+                    {item.period}
+                  </span>
                 </div>
-                <p className="text-sm font-medium text-slate-400">{item.company}</p>
-                <ul className="space-y-1.5 text-sm text-slate-300/90 leading-relaxed list-disc list-inside marker:text-slate-600">
-                  {item.highlights.map((point, i) => (
-                    <li key={i}>{point}</li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2 pt-1.5">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 text-xs rounded-md bg-slate-900 border border-slate-800 text-slate-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+
+                <div className="space-y-2.5 border-l border-slate-800 ml-2 pl-5 sm:pl-6">
+                  <div className="relative space-y-2.5">
+                    <span className="absolute -left-[25px] sm:-left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-slate-600 ring-4 ring-slate-950" />
+                    <ul className="space-y-1.5 text-sm text-slate-300/90 leading-relaxed list-disc list-inside marker:text-slate-600">
+                      {item.highlights.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-2 pt-1.5">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-0.5 text-xs rounded-md bg-slate-950/80 border border-slate-800 text-slate-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
