@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { FeaturedProjectCard } from "../components/FeaturedProjectCard";
 import {
   Mail,
-  ExternalLink,
+  ExternalLink,  
   FolderGit2,
   Briefcase,
   Terminal,
@@ -290,7 +291,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Proyectos Destacados con elevación hover */}
+        {/* Proyectos Destacados */}
         <section id="proyectos" className="space-y-8 scroll-mt-24">
           <div className="flex items-center gap-2.5 text-slate-100">
             <FolderGit2 className="w-5 h-5 text-sky-400" />
@@ -298,57 +299,9 @@ export default function Home() {
               Proyectos Destacados
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-6">
             {PROJECTS.map((project, index) => (
-              <article
-                key={index}
-                className="group flex flex-col justify-between p-5 sm:p-6 rounded-xl bg-slate-900/50 border border-slate-800/80 border-t-slate-700/50 hover:-translate-y-1 hover:border-sky-500/40 hover:bg-slate-900/80 transition-all duration-300 shadow-lg"
-              >
-                <div className="space-y-3">
-                  <div className="flex justify-between items-start gap-4">
-                    <h3 className="text-base font-semibold text-slate-100 group-hover:text-sky-300 transition-colors">
-                      {project.title}
-                    </h3>
-                    <div className="flex gap-3 text-slate-400 shrink-0">
-                      {project.repoUrl && (
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Código fuente"
-                          className="hover:text-sky-400 transition-colors"
-                        >
-                          <GithubIcon className="w-4 h-4" />
-                        </a>
-                      )}
-                      {project.demoUrl && (
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Demo en vivo"
-                          className="hover:text-sky-400 transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-300/90 leading-relaxed">
-                    {project.description}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2 pt-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 text-xs font-mono rounded bg-slate-950 text-slate-400 border border-slate-800/80"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
+              <FeaturedProjectCard key={index} project={project} />
             ))}
           </div>
         </section>

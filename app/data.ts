@@ -99,31 +99,41 @@ export const OTHER_EXPERIENCE = [
   },
 ];
 
-export const PROJECTS = [
+export interface Project {
+  title: string;
+  subtitle: string;
+  period: string;
+  status: string;
+  folderLabel: string;
+  description: string;
+  beforeText: string;
+  afterText: string;
+  connectionLabel: string;
+  imageUrl: string;
+  tags: string[];
+  repoUrl: string;
+  demoUrl?: string;
+}
+
+export const PROJECTS: Project[] = [
   {
-    title: "Automatización de Facturación Electrónica (ARCA)",
+    title: "Fintech SLA Monitor",
+    subtitle: "Observabilidad y auditoría de contratos API",
+    period: "Fintech · 2026",
+    status: "operativo",
+    folderLabel: "sla-monitor",
     description:
-      "Herramienta local desarrollada en Python 3 para interactuar directamente con los Web Services SOAP (WSAA y WSFEv1) de ARCA, automatizando la emisión y validación de comprobantes.",
-    tags: ["Python 3", "SOAP / XML", "Automatización", "APIs"],
-    repoUrl: "https://github.com/FranciscoLuisCarrillo",
-    demoUrl: "",
+      "Sistema end-to-end para ecosistemas bursátiles y fintech. Audita latencia, disponibilidad HTTP y esquemas JSON entre OMS, Mobile y Onboarding en tiempo real.",
+    beforeText:
+      "Detección reactiva de fallos: las caídas silenciosas o cambios en contratos JSON se descubrían recién cuando impactaban al usuario.",
+    afterText:
+      "Monitoreo preventivo cada 5s con validación de esquema, alertas SLA automáticas y métricas P95 persistidas en SQL.",
+    connectionLabel: "todo auditado",
+    imageUrl: "/projects/sla-monitor.png",
+    tags: ["Python", "FastAPI", "SQLite / SQL", "Streamlit"],
+    repoUrl: "https://github.com/FranciscoLuisCarrillo/fintech-api-sla-monitor",
   },
-  {
-    title: "Sistema de Gestión de Ventas e Inventario",
-    description:
-      "Arquitectura automatizada multiusuario basada en Google Sheets, Apps Script y tableros ejecutivos en Looker Studio para seguimiento comercial en tiempo real.",
-    tags: ["Apps Script", "Looker Studio", "Data Modeling", "Automatización"],
-    repoUrl: "https://github.com/FranciscoLuisCarrillo",
-    demoUrl: "",
-  },
-  {
-    title: "Rotten_DB — Plataforma de Calificación Audiovisual",
-    description:
-      "Diseño relacional completo, modelado entidad-relación, vistas, procedimientos almacenados y triggers optimizados para consultas analíticas y transaccionales.",
-    tags: ["SQL Server", "Database Design", "Stored Procedures", "Triggers"],
-    repoUrl: "https://github.com/FranciscoLuisCarrillo",
-    demoUrl: "",
-  },
+  
 ];
 
 export const SKILLS = {
